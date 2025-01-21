@@ -1,11 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Séance 1 - Se repérer sur le piano</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f0ea;
+            color: #120d07;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #120d07;
+            color: #f2f0ea;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .exercises {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+        .exercise-link {
+            display: block;
+            text-decoration: none;
+            color: #120d07;
+            background-color: #f2f0ea;
+            border: 2px solid #120d07;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .exercise-link:hover {
+            background-color: #af7437;
+            color: #f2f0ea;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #120d07;
+            color: #f2f0ea;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>J'aime le nutella</h1>
+    <header>
+        <h1>Séance 1 : Se repérer sur le piano</h1>
+        <p>Bienvenue à la première séance ! Chaque exercice dure 5 minutes. Choisissez un exercice ci-dessous pour commencer.</p>
+    </header>
+
+    <main>
+        <section class="exercises">
+            <article>
+                <a href="exercise1.html" class="exercise-link">Exercice 1 : Jouer les notes correspondantes (5')</a>
+            </article>
+            <article>
+                <a href="exercise2.html" class="exercise-link">Exercice 2 : Suite de 4 notes aléatoires (5')</a>
+            </article>
+            <article>
+                <a href="exercise3.html" class="exercise-link">Exercice 3 : Notes avec dièses et bémols (5')</a>
+            </article>
+            <article>
+                <a href="exercise4.html" class="exercise-link">Exercice 4 : Suite avec dièses et bémols (5')</a>
+            </article>
+            <article>
+                <a href="exercise5.html" class="exercise-link">Exercice 5 : Notes en anglais (CDEFGAB) (5')</a>
+            </article>
+            <article>
+                <a href="exercise6.html" class="exercise-link">Exercice 6 : Suite anglaise avec dièses et bémols (5')</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Aiden Classic. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
