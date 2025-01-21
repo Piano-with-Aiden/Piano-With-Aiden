@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 4 : Suite de notes avec altérations</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f0ea;
+            color: #120d07;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #af7437;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .instructions {
+            margin: 10px 0;
+            font-size: 1em;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        button {
+            background-color: #120d07;
+            color: #f2f0ea;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #af7437;
+        }
+        .note-display {
+            font-size: 2.5em;
+            margin: 20px 0;
+            color: #af7437;
+            text-align: center;
+        }
+        .timer {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .instructions {
+                font-size: 0.9em;
+                margin: 10px 0;
+            }
+            .note-display {
+                font-size: 2em;
+                margin: 10px 0;
+            }
+            .timer {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercice 4 : Suite de notes avec altérations</h1>
+    <div class="instructions">
+        Dans cet exercice, vous devez jouer la <strong>suite de 4 notes</strong> affichée à l'écran, y compris les notes avec dièses (#) et bémols (♭). Cet entraînement est crucial pour vous habituer aux altérations, étape fondamentale pour progresser au piano !
+    </div>
+    <div class="note-display">Appuyez sur "Générer une suite"</div>
+    <div class="controls">
+        <button id="generate-sequence">Générer une suite</button>
+        <button id="auto-generate">Générer automatiquement (toutes les 8s)</button>
+    </div>
+    <div class="timer">
+        <button id="start-timer">Démarrer le minuteur (5')</button>
+        <div id="countdown">Temps restant : 05:00</div>
+    </div>
+
+    <script>
+        const notes = ["Do", "Do#", "Ré", "Ré#", "Mi", "Fa", "Fa#", "Sol", "Sol#", "La", "La#", "Si", "Ré♭", "Mi♭", "Sol♭", "La♭", "Si♭"];
+        const invalidNotes = ["Si#", "Mi#", "Fab", "Dob"];
+        const validNotes = notes.filter(note => !invalidNotes.includes(note));
+        const noteDisplay = document.querySelector('.note-display');
+        const generateSequenceButton = document.getElementById('generate-sequence');
+        const autoGenerateButton = document.getElementById('auto-generate');
+        const startTimerButton = document.getElementById('start-timer');
+        const countdownDisplay = document.getElementById('countdown');
+
+        let autoGenerateInterval;
+        let timerInterval;
+
+        // Generate a random sequence of 4 notes
+        function generateSequence() {
+            const sequence = Array.from({ length: 4 }, () => validNotes[Math.floor(Math.random() * validNotes.length)]).join(' - ');
+            noteDisplay.textContent = sequence;
+        }
+
+        // Start auto-generation of sequences every 8 seconds
+        autoGenerateButton.addEventListener('click', () => {
+            if (autoGenerateInterval) {
+                clearInterval(autoGenerateInterval);
+                autoGenerateInterval = null;
+                autoGenerateButton.textContent = 'Générer automatiquement (toutes les 8s)';
+            } else {
+                generateSequence(); // Generate the first sequence immediately
+                autoGenerateInterval = setInterval(generateSequence, 8000);
+                autoGenerateButton.textContent = 'Arrêter la génération automatique';
+            }
+        });
+
+        // Generate a sequence on button click
+        generateSequenceButton.addEventListener('click', generateSequence);
+
+        // Start 5-minute countdown timer
+        startTimerButton.addEventListener('click', () => {
+            let remainingTime = 300; // 5 minutes in seconds
+
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+
+            timerInterval = setInterval(() => {
+                const minutes = Math.floor(remainingTime / 60).toString().padStart(2, '0');
+                const seconds = (remainingTime % 60).toString().padStart(2, '0');
+                countdownDisplay.textContent = `Temps restant : ${minutes}:${seconds}`;
+
+                if (remainingTime > 0) {
+                    remainingTime--;
+                } else {
+                    clearInterval(timerInterval);
+                    countdownDisplay.textContent = 'Temps écoulé !';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
