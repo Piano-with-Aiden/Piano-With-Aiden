@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 1 : Notes aléatoires</title>
+    <title>Exercice 1 : Note aléatoire</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -16,15 +16,20 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
         h1 {
             color: #af7437;
+            margin-bottom: 10px;
+            text-align: center;
         }
         .instructions {
-            margin: 20px;
-            font-size: 1.2em;
+            margin: 10px 0;
+            font-size: 1em;
+            font-style: italic;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.4;
         }
         .controls {
             margin: 20px 0;
@@ -47,26 +52,43 @@
             background-color: #af7437;
         }
         .note-display {
-            font-size: 3em;
+            font-size: 2.5em;
             margin: 20px 0;
             color: #af7437;
+            text-align: center;
         }
         .timer {
             margin-top: 20px;
-            font-size: 1.5em;
+            font-size: 1.2em;
             text-align: center;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .instructions {
+                font-size: 0.9em;
+                margin: 10px 0;
+            }
+            .note-display {
+                font-size: 2em;
+                margin: 10px 0;
+            }
+            .timer {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Exercice 1 : Notes aléatoires</h1>
+    <h1>Exercice 1 : Note aléatoire</h1>
     <div class="instructions">
-        Dans cet exercice, vous devez jouer <strong>toutes</strong> les notes correspondant à celle affichée sur l'écran. Cet exercice, bien qu'il puisse sembler répétitif, est <strong>fondamental</strong> pour développer vos bases au piano. Prenez-le comme une étape essentielle : nous passons tous par là pour aller plus loin !
+        Dans cet exercice, une <strong>note aléatoire</strong> s'affiche sur l'écran. Votre objectif est de trouver cette note sur votre clavier. Cet exercice simple mais efficace vous aidera à mémoriser les positions des notes rapidement.
     </div>
-    <div class="note-display">&#9835; Appuyez sur "Générer une note" &#9835;</div>
+    <div class="note-display">Appuyez sur "Générer une note"</div>
     <div class="controls">
         <button id="generate-note">Générer une note</button>
-        <button id="auto-generate">Générer automatiquement (toutes les 5s)</button>
+        <button id="auto-generate">Générer automatiquement (toutes les 8s)</button>
     </div>
     <div class="timer">
         <button id="start-timer">Démarrer le minuteur (5')</button>
@@ -90,15 +112,15 @@
             noteDisplay.textContent = randomNote;
         }
 
-        // Start auto-generation of notes every 5 seconds
+        // Start auto-generation of notes every 8 seconds
         autoGenerateButton.addEventListener('click', () => {
             if (autoGenerateInterval) {
                 clearInterval(autoGenerateInterval);
                 autoGenerateInterval = null;
-                autoGenerateButton.textContent = 'Générer automatiquement (toutes les 5s)';
+                autoGenerateButton.textContent = 'Générer automatiquement (toutes les 8s)';
             } else {
                 generateNote(); // Generate the first note immediately
-                autoGenerateInterval = setInterval(generateNote, 5000);
+                autoGenerateInterval = setInterval(generateNote, 8000);
                 autoGenerateButton.textContent = 'Arrêter la génération automatique';
             }
         });
