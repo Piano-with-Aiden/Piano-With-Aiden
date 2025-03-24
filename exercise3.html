@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f0ea;
-            color: #120d07;
+            background-color: #ffffff; /* Blanc */
+            color: #000000; /* Noir */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +19,13 @@
             padding: 0 10px;
             box-sizing: border-box;
         }
+        
         h1 {
-            color: #af7437;
+            color: #ff0000; /* Rouge */
             margin-bottom: 10px;
             text-align: center;
         }
+        
         .instructions {
             margin: 10px 0;
             font-size: 1em;
@@ -31,6 +33,7 @@
             text-align: center;
             line-height: 1.4;
         }
+        
         .controls {
             margin: 20px 0;
             display: flex;
@@ -38,9 +41,10 @@
             align-items: center;
             gap: 10px;
         }
+        
         button {
-            background-color: #120d07;
-            color: #f2f0ea;
+            background-color: #000000; /* Noir */
+            color: #ffffff; /* Blanc */
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
@@ -48,20 +52,24 @@
             font-size: 1em;
             transition: background-color 0.3s;
         }
+        
         button:hover {
-            background-color: #af7437;
+            background-color: #ff0000; /* Rouge */
         }
+        
         .note-display {
             font-size: 2.5em;
             margin: 20px 0;
-            color: #af7437;
+            color: #ff0000; /* Rouge */
             text-align: center;
         }
+        
         .timer {
             margin-top: 20px;
             font-size: 1.2em;
             text-align: center;
         }
+        
         @media (max-width: 600px) {
             h1 {
                 font-size: 1.5em;
@@ -82,14 +90,19 @@
 </head>
 <body>
     <h1>Exercice 3 : Notes altérées</h1>
+    
     <div class="instructions">
-        Dans cet exercice, vous devez jouer toutes les notes correspondant à celle affichée à l'écran, y compris les notes avec dièses et bémols. Cet entraînement est indispensable pour apprendre à reconnaître et jouer toutes les altérations sur le clavier.
+        Dans cet exercice, vous devez jouer toutes les notes correspondant à celle affichée à l'écran,
+        y compris les notes avec dièses et bémols. Cet entraînement est indispensable pour apprendre à reconnaître et jouer toutes les altérations sur le clavier.
     </div>
+    
     <div class="note-display">Appuyez sur "Générer une note"</div>
+    
     <div class="controls">
         <button id="generate-note">Générer une note</button>
         <button id="auto-generate">Générer automatiquement (toutes les 5s)</button>
     </div>
+    
     <div class="timer">
         <button id="start-timer">Démarrer le minuteur (5')</button>
         <div id="countdown">Temps restant : 05:00</div>
